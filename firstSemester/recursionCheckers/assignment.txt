@@ -1,0 +1,27 @@
+ Termín odevzdání: 	16.12.2024 11:59:59 	 
+Pozdní odevzdání s penalizací: 	31.12.2024 23:59:59 (Penále za pozdní odevzdání: 100.0000 %)
+Hodnocení: 	7.7000
+Max. hodnocení: 	7.0000 (bez bonusů)
+Odevzdaná řešení: 	2 / 20 Volné pokusy + 10 Penalizované pokusy (-10 % penalizace za každé odevzdání)
+Nápovědy: 	0 / 2 Volné nápovědy + 2 Penalizované nápovědy (-10 % penalizace za každou nápovědu)
+
+Úkolem je vytvořit program, který bude počítat možné tahy kamenů ve hře dáma.
+
+Předpokládáme hru dáma se standardními pravidly. Pro zobecnění však uvažujeme čtvercovou hrací plochu o rozměru až 26 x 26 políček. Uvažujeme obyčejné kameny i dámy. Na vstupu programu je zadaná velikost plochy a rozmístění jednotlivých figurek. Program má za úkol určit možné tahy bílého. Tedy určit všechny různé platné tahy spolu s počtem zajatých kamenů černého.
+
+Vstupem programu je nejprve velikost hrací plochy (celé číslo, max 26). Dále následuje seznam kamenů. Na jedné řádce je zadaný jeden kámen. Zadání má obecný tvar:
+
+typ sloupec řádka
+
+kde typ představuje typ kamene (w - bílý kámen, W - bílá dáma, b - černý kámen, B - černá dáma), sloupec je písmeno malé abecedy (a, b, ...) a řádka je celé číslo (1, 2, ...). Zadávání kamenů končí při dosažení EOF.
+
+Výstupem programu je výpis možných tahů. Formát tahů je zřejmý z ukázky, za posloupností políček je uveden počet zajatých kamenů černého (pokud je nějaký černý kámen zajat). Poslední řádka výpisu udává počet možných různých tahů.
+
+Pokud je vstup neplatný, program to musí detekovat a zobrazit chybové hlášení. Chybové hlášení zobrazujte na standardní výstup (ne na chybový výstup). Za chybu považujte:
+
+    velikost hrací plochy je nečíselná nebo mimo interval 3 až 26,
+    zadaný sloupec nebo řádek pozice kamene je mimo hrací plochu,
+    typ kamene není w, W, b ani B,
+    souřadnice není tmavé políčko (a1 je tmavé),
+    na jednom políčku byly zadané dva nebo více kamenů.
+
