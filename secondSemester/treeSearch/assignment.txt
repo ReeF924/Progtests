@@ -1,0 +1,19 @@
+Úkolem je realizovat šablonu třídy, která dokáže počítat cenu za zprostředkování v síti zkorumpované byrokracie.
+
+Předpokládáme síť zkorumpovaných úředníků. Úředníci jsou organizovaní do stromové struktury. Někteří úředníci se znají a jsou ochotni si mezi sebou (za přiměřený poplatek) předat dokumenty. Mezi každou dvojicí úředníků vždy existuje právě jedno spojení. Spojení může být buď přímé nebo zprostředkované mezilehlými úředníky. Pokud potřebujeme pro naši žádost podanou u úředníka A získat schválení od úředníka B, musíme zaplatit sumu poplatků, které spotřebuje předávání dokumentu mezi úředníky A a B.
+
+Realizovaná třída dostane na svém vstupu seznam dvojic úředníků, kteří si mezi sebou předávají dokumenty. Pro každou dvojici je dále známá cena za zprostředkování tohoto předání. Předávání dokumentů je obousměrné, oba směry jsou zpoplatněné stejnou částkou.
+
+Z důvodů utajení nejsou úředníci v síti reprezentováni svými pravými jmény. Mohou být identifikováni řetězci, čísly či jinými objekty. Proto je potřeba realizovanou třídu implementovat jako šablonu s generickým parametrem - typem, který reprezentuje úředníka.
+Rozhraní třídy CNet
+
+implicitní konstruktor
+    inicializuje prázdnou instanci třídy
+add ( y, y, cost )
+    metoda přidá dvojici úředníků x a y, kteří si mezi sebou předávají dokumenty za cenu cost. Návratovou hodnotou metody je reference na sebe sama (fluent interface).
+optimize ()
+    metoda je zavolaná po přidání všech dvojic spolupracujících úředníků. Může být využita pro předpočítání datových struktur, které třída použije pro urychlení následujících hledání. Návratovou hodnotou metody je reference na sebe sama (fluent interface).
+totalCost(x,y)
+    metoda vyhledá spojení mezi úředníky x a y a spočte celkovou sumu, kterou za zprostředkování zaplatíme. Vypočtenou čásku vrátí jako návratovou hodnotu. Pokud spojení neexistuje (neznámý úředník), vrátí metoda hodnotu -1.
+T_
+    generický parametr třídy určuje datový typ, který reprezentuje úředníka. Prvek má garantované pouze minimalistické rozhraní: kopírování, přesouvání, destrukci a porovnání na shodu/různost operátory == a !=. Ostatní operace nemusí existovat. Ukázka minimalistického prvku je třída CDumbString v přiloženém souboru. 

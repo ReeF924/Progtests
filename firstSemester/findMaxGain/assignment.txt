@@ -1,0 +1,29 @@
+Úkolem je realizovat program, který bude počítat zisk a ztrátu při obchodování s akciemi.
+
+Předpokládáme, že zpracováváme cenu akcie v čase. Cenu akcie se postupně dozvídáme pro jednotlivé časové okamžiky. Pro známé hodnoty ceny v minulosti chceme vypočítat maximální možný zisk a maximální možnou ztrátu. Při výpočtu dostaneme zadaný časový interval, ve kterém obchod proběhne. Akcii můžeme jednou nakoupit (někdy v zadaném časovém intervalu, za cenu platnou v okamžiku nákupu) a jednou prodat (opět v zadaném časovém intervalu, za cenu platnou v dobu prodeje). Při obchodování nelze shortovat, tj. musíme nejprve akcii nakoupit a teprve pak prodat.
+
+Vstupem programu je zadání ceny akcie prokládané dotazy na možný zisk a ztrátu. Cena akcie je zadána ve tvaru + cena, např. + 200. Dotaz na zisk/ztrátu má podobu ? from to, např. ? 5 10. Ceny akcie a dotazy jsou zadávané postupně, zadávání končí dosažením konce vstupu (EOF). Následuje ukázkový běh #1 s dodaným vysvětlením (za znakem #):
+
++ 20                 # cena v čase 0
++ 30                 # cena v čase 1
++ 40                 # cena v čase 2
++ 10                 # cena v čase 3
+? 0 2                # hledání max. zisku/ztráty pro období <0;2>
+? 0 3                # hledání max. zisku/ztráty pro období <0;3>
++ 50                 # cena v čase 4
+? 0 3                # hledání max. zisku/ztráty pro období <0;3>
+? 1 4                # hledání max. zisku/ztráty pro období <1;4>
+
+Výstupem programu je řešení jednotlivých zadaných problémů. Pro každý zadaný problém je zobrazena informace o maximálním možném zisku (spolu s časovým okamžikem nákupu a prodeje akcie) a informace o maximální možné ztrátě (opět s časovými okamžiky nákupu a prodeje). Pokud v zadaném intervalu nelze realizovat zisk/ztrátu, je výsledkem hodnota N/A, viz ukázka.
+
+Pokud vstup není platný, program tuto situaci detekuje, vypíše chybové hlášení a ukončí se. Formát chybového hlášení je opět uveden v ukázkách níže. Za chybu je považováno:
+
+    nerozpoznaný vstup (nezačíná znakem + ani ?),
+    neplatné zadání ceny akcie (nečíselné, záporná cena),
+    neplatné zadání dotazu (neobsahuje dvě celá čísla, počátek intervalu je záporný, konec intervalu je větší nebo roven počtu dosud známých cen akcií, počátek intervalu je větší než konec intervalu).
+
+Pokud program detekuje chybu, přestane se dotazovat na další vstupní hodnoty, vypíše chybové hlášení a ukončí se. Chybu je tedy potřeba detekovat okamžitě po načtení hodnoty (neodkládejte kontrolu vstupních údajů až za načtení celého vstupu). Chybové hlášení vypisujte na standardní výstup (nevypisujte jej na standardní chybový výstup).
+
+Dodržte přesně formát všech výpisů. Výpis Vašeho programu musí přesně odpovídat ukázkám. Testování provádí stroj, který kontroluje výpis na přesnou shodu. Pokud se výpis Vašeho programu liší od referenčního výstupu, je Vaše odpověď považovaná za nesprávnou. Záleží i na mezerách, i na odřádkování. Nezapomeňte na odřádkování za posledním řádkem výstupu (a za případným chybovým hlášením). Využijte přiložený archiv s testovacími vstupy a usnadněte si testování Vašeho programu.
+
+Váš program bude spouštěn v omezeném testovacím prostředí. Je omezen dobou běhu (limit je vidět v logu referenčního řešení) a dále se kontroluje i velikost použité paměti (k dispozici je dostatek paměti pro uložení cen akcií a dalších vypočtených hodnot; paměťové požadavky však nesmí nesmyslně překračovat rozumné meze). Zadaný problém lze řešit algoritmy s různou efektivitou:

@@ -1,0 +1,44 @@
+Úkolem je realizovat třídu CRegister, která bude implementovat registr obyvatelstva.
+
+Uvažovaný registr je specifický tím, že chceme ukládat všechny změny (všechny nahlášené změny bydliště daného člověka). Dále, pro účely archivace chceme ukládat kopie registru.
+
+Úloha je směřována k procvičení pochopení mělké a hluboké kopie objektu. Má části povinné, dobrovolné a bonusové. Pro splnění povinné části úlohy postačuje vytvořit funkční třídu, která bude splňovat požadované rozhraní. Pro zvládnutí nepovinných a bonusových částí je potřeba rozmyslet ukládání dat tak, aby se při kopírování zbytečně neplýtvalo pamětí.
+
+Úloha má procvičit práci s kopírováním objektů. Z tohoto důvodu jsou v úloze potlačené části standardní C++ knihovny, zejména STL a datový typ C++ string.
+
+Požadovaná třída CRegister má následující rozhraní:
+
+implicitní konstruktor
+    vytvoří prázdnou instanci registru,
+kopírující konstruktor
+    vytvoří hlubokou kopii instance. Implementujte jej, pokud kompilátorem automaticky vytvořený kopírující konstruktor nevyhovuje (asi bude potřeba),
+destruktor
+    uvolní prostředky alokované instancí.
+operátor =
+    zkopíruje obsah jedné instance do druhé (hluboká kopie). Implementujte jej, pokud kompilátorem automaticky vytvořený operátor = nevyhoví,
+add(id,name,surname,date,street,city)
+    metoda přidá zadaného člověka do databáze a nastaví u něj adresu pobytu. Parametrem je 6 řetězců s následujícím významem:
+
+        id udává jednoznačný identifikátor člověka. Jedná se o řetězec, můžete předpokládat, že je vždy ve formátu "XXXXXX/YYYY",
+        name udává jméno člověka. Jméno může být libovolné, libovolně dlouhé.
+        surname udává příjmení člověka. Může být libovolné, libovolně dlouhé.
+        date udává datum počátku platnosti místa pobytu. Jedná se o řetězec, můžete předpokládat, že je vždy ve formátu "YYYY-MM-DD".
+        street udává adresu pobytu, řetězec, libovolný obsah a délka.
+        city udává adresu místa pobytu, řetězec, libovolný obsah a délka.
+
+    Metoda add vrací hodnotu true pro signalizaci úspěchu, false pro neúspěch (osoba se stejným id již byla zadaná).
+resettle(id,date,street,city)
+    metoda přidá místo pobytu do záznamu daného člověka. Význam parametrů je stejný jako u metody add. Metoda vrací true pokud operace uspěje, false pokud selže (člověk se zadaným id neexistuje nebo daný člověk v ten samý den již dříve oznámil jinou adresu (tedy v jeden den se lze přestěhovat pouze jedenkrát). Pozor - informace o změně adresy nemusí být zpracovávány v pořadí vzrůstajícího času.
+print(stream,id)
+    metoda zobrazí záznam pro člověka zadaného id do zadaného výstupního proudu stream. Metoda vrací true pro signalizaci úspěchu, false pro neúspěch (člověk se zadaným id neexistuje). Formát výstupu je uveden v ukázkách běhu, adresy trvalého bydliště jsou vypisované v rostoucím pořadí dle data stěhování.
+
+Odevzdávejte soubor, který obsahuje implementovanou třídu CRegister a další Vaše podpůrné třídy. Třída musí splňovat veřejné rozhraní podle ukázky - pokud Vámi odevzdané řešení nebude obsahovat popsané rozhraní, dojde k chybě při kompilaci. Do třídy si ale můžete doplnit další metody (veřejné nebo i privátní) a členské proměnné. Odevzdávaný soubor musí obsahovat jak deklaraci třídy (popis rozhraní) tak i definice metod, konstruktoru a destruktoru. Je jedno, zda jsou metody implementované inline nebo odděleně. Odevzdávaný soubor nesmí obsahovat vkládání hlavičkových souborů a funkci main. Funkce main a vkládání hlavičkových souborů může zůstat, ale pouze obalené direktivami podmíněného překladu jako v ukázce níže.
+
+Pokud se rozhodnete řešit i nepovinné a bonusové části úlohy, můžete pro nalezení vhodné reprezentace využít následující pozorování:
+
+    Vzniká mnoho kopií instance, které ale dále nejsou měněné. Tedy vyplatí se uvažovat realizaci, kde jsou data sdílená s originálem dokud nedojde k první modifikaci originálu nebo kopie.
+    Změny v instanci jsou "malé", tedy velká část obsahu zůstane stejná jako v originálu. Vyplatí se tedy i uvažovat o sdílení nezměněných částí instance. Pokud byste si např. osoby realizovali jako třídy, dá se předpokládat, že mezi originálem a kopií se změní pouze několik osob.
+    Řetězce jmen, příjmení, ale i ulice a města se opakují. V registru např. může být 10000 obyvatel, ale např. jen 500 unikátních příjmení. Vyplatí se uvažovat o sdílení jednotlivých řetězců nebo i o jejich deduplikaci (cílené vyhledávání stejných řetězců).
+    Vyhledávání osob bude velmi častá operace, navíc osob je v registru mnoho. Po počátečním naplnění registru dojde k saturaci - nových osob vzniká málo.
+    Test rychlosti je částečně výzvou i pro vkládání osob do registru. Pokud chcete osoby vkládat např. do pole a chcete v poli udržovat nějaké definované pořadí, může vkládání samotné znamenat velkopu režii při manipulaci s obsahem pole. Vyšší efektivity lze dosáhnout buď technologickými prostředky (přesouvání místo kopírování ), nebo změnou v organizaci dat (pole odkazů na struktury).
+
