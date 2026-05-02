@@ -1,0 +1,18 @@
+Vaším úkolem je implementovat třídu Bloom, implementující Bloom filter pro textové řetězce. Vyžadované metody jsou:
+
+    Bloom(s, m): Konstruktor vytvoří novou instanci, která očekává vložení s prvků a může alokovat až m bajtů paměti (malá extra alokace nad tento limit pro uložení hešovacích funkcí a jiných servisních dat je v pořádku).
+    insert(t): Vloží řetězec t do tabulky.
+    contains(t): Otestuje, zda se řetězec v tabulce nachází. Malé množství false-positives je dovoleno.
+
+Dále třída Bloom musí obsahovat konstantu ENABLE_STD_HASH. Pokud je true, tak bude k dispozici implementace std::hash na řetězcích za cenu bodové ztráty.
+
+
+
+Vaším úkolem je implementovat třídu CountingBloom implementující počítací Bloom filter pro textové řetězce. Vyžadované metody jsou:
+
+    CountingBloom(s, m): Konstruktor vytvoří novou instanci, která očekává vložení s prvků a může alokovat až m bajtů paměti (malá extra alokace nad tento limit pro uložení hešovacích funkcí a jiných servisních dat je v pořádku).
+    insert(t): Vloží řetězec t do tabulky. Opakované vkládání stejného řetězce nemusíte řešit.
+    erase(t): Odebere řetězec t. Můžete předpokládat, že se mazaný řetězec v tabulce nachází.
+    contains(t): Otestuje, zda se řetězec v tabulce nachází. Malé množství false-positives je dovoleno.
+
+Dále třída CountingBloom musí obsahovat konstantu ENABLE_STD_HASH. Pokud je true, tak bude k dispozici implementace std::hash na řetězcích za cenu bodové ztráty.

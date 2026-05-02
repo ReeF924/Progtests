@@ -1,0 +1,31 @@
+Vaším úkolem je implementovat funkci find_shortest_path, která nalezne rychlejší procházku z libovolné ze vstupních místnosti entrances k pokladu treasure a zpět do libovolné vstupní místnosti, na které hrdina přežije. Pokud taková procházka neexistuje, vraťte prázdný vektor. Parametry funkce find_shortest_path jsou:
+
+    const std::vector<Room>& rooms – seznam všech místností. Datovým typ Room je struktura obsahující:
+
+        std::vector<RoomId> neighbors – seznam indexů místností (do pole rooms), do kterých z této vede chodba.
+
+        std::optional<Monster> monster – obsahuje příšeru, pokud se v místnosti nějaká nachází. Datový typ Monster obsahuje atributy int hp, off, def, popisující počet životů, útok a obranu dané příšery a dále int stacking_off, stacking_def, které popisují, jak se změní útok, resp. obrana příšery po každém jejím tahu. Pokud hrdina vstoupí do místnosti s příšerou, tak započne souboj. Souboj končí jedině smrtí jednoho z účastníků (tedy pokud ani jeden ze soupeřů nedokáže druhého zranit, jsou oba lapeni v boji navždy). První ránu se pokusí zasadit příšera, pak hrdina, pak znovu příšera atd. Po každém útoku utrží cíl zranění rovné max(0, a_off - t_def), kde a_off je útok útočníka, t_def je obrana cíle. Cíl zemře, pokud má po útoku 0 nebo méně životů.
+
+        Při rozumně efektivní implementaci zbylých částí úlohy je dodaná funkce simulate_combat dostatečně efektivní pro plný bodový zisk.
+
+        Jelikož jsou chodby velmi dlouhé, tak lze čas strávený soubojem a výměnou předmětů zanedbat, hrdina se cestou do další místnosti zcela vyléčí a také, pokud hrdina znovu navštíví nějakou místnost, bude v ní znovu příšera i veškeré předměty.
+
+        std::vector<Item> items – předměty, které se v místnosti nachází (popis struktury Item vizte níže). Pokud je v místnosti příšera, může je hrdina sebrat až po vítězství nad ní.
+
+    const std::vector<RoomId>& entrances – indexy místností v poli rooms, kudy lze vejít do bludiště či z něj vyjít.
+
+    RoomId treasure – index místnosti s pokladem, který chce hrdina sebrat.
+
+Návratovým typem je std::vector<Action> – seznam akcí začínající a končící v místnosti, která je vchodem (ale tyto místnosti mohou být různé). Typ Action je std::variant<Move, Pickup, Drop>. Hodnota typu Move znamená přesun do dané místnosti (musí sousedit s aktuální). Hodnota typu Pickup znamená sebrání předmětu v aktuální místnosti (musí se tam nacházet, pokud hrdina drží jiný předmět stejného typu, tak ho automaticky zahodí). Hodnota typu Drop znamená zahození drženého předmětu daného typu.
+
+Datový typ Item obsahuje atributy:
+
+    Type type – druh předmětu. Existují 3 druhy: zbraně, brnění a gumové kačenky. Hrdina může v jednu chvíli mít nejvýše jeden předmět od každého druhu. Předmětu se může kdykoliv vyjma boje zbavit, ale tím je daný předmět ztracen, nelze ho následně sebrat (pokud nebude v místnosti nalezena nová kopie).
+    std::string name – název předmětu (ne nutně unikátní).
+    int hp, off, def – hodnoty, o které se změní hrdinovy životy, útok a obrana, pokud má daný předmět u sebe. Bonusy mohou být i záporné. Výsledná obrana a útok mohou být záporné. Pokud by maximální životy měly vyjít nekladné, bude mít hrdina 1 život.
+    int stacking_off, stacking_def – hodnoty, o které se změní hrdinův útok, resp. obrana po každém jeho tahu. Tyto úpravy trvají do konce daného souboje.
+    bool first_attack – pokud je true, souboj začíná hrdina a ne příšera.
+    bool stealth – pokud je true, hrdina se může (ale nemusí) místností proplížit, čímž se vyhne souboji s příšerou. Pokud se hrdina plíží, nemůže sbírat věci a to ani hledaný poklad.
+
+Různých předmětů je v bludišti málo, ale stejný předmět se může vyskytovat v mnoha místnostech. Hrdina bez vybavení má 10000 životů, útok 3, obranu 2.
+

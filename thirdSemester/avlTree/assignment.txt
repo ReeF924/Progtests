@@ -1,0 +1,19 @@
+Rozhraní programu
+
+Vaším úkolem je implementovat třídu HobbitArmy, která musí obsahovat:
+
+    Metodu add, která přidá hobita do armády. Pokud již armáda hobita daného jména obsahuje nebo přidávaný hobit nemá kladný počet životů, metoda vrátí false a armáda zůstane nezměněná.
+
+    Metodu erase, která dostane jméno hobita a odebere ho z armády. Návratovou hodnotou je odebraný hobit, případně prázdný optional, pokud se hobit daného jména v armádě nenacházel.
+
+    Metodu stats, která vrátí aktuální stav hobita zadaného jména, případně prázdný optional, pokud se hobit daného jména v armádě nenachází.
+
+    Metodu for_each, která dostane jako argument funktor, který postupně v abecedním pořadí zavolá na všech hobitech v armádě. Tato metoda slouží ke čtení a neupravuje armádu, tedy funktoru můžete předávat hobity const referencí.
+
+    Metodu enchant, která dostane jména dvou hobitů first a last a hodnoty, o které má změnit vlastnosti, a upraví vlastnosti všech hobitů v armádě jejichž jména jsou abecedně v intervalu first až last (včetně obou mezí). Pokud je first větší než last, metoda nic neudělá a vrátí true.
+
+    Pokud by úpravou klesly životy některého z hobitů na 0 nebo méně, není možné danou úpravu provést, metoda nesmí upravit žádného hobita a musí vrátit false. Efektivní implementace této funkcionality je obtížná, proto je konstanta CHECK_NEGATIVE_HP nastavena na false.
+
+    Statickou konstantu CHECK_NEGATIVE_HP typu bool. Pokud je true jsou zadávány i testy, kdy může metoda enchant vrátit false. Pokud je false, je garantováno, že metoda enchant nebude mít důvod selhat za cenu bodové penalizace.
+
+

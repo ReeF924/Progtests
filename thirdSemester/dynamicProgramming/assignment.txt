@@ -1,0 +1,16 @@
+Rozhraní programu
+
+Vaším úkolem je implementovat funkci plan_heist, která určí, které ze zadaných trezorů vykrást, aby jste maximalizovali zisk, ale nepřekročili čas pobytu v bance. Návratovou hodnotou je seznam trezorů k vyloupení identifikovaných jejich pořadím na vstupu a pro každý z nich informace, jak ho odemknout (vektor obsahující true, pokud je daný kamínek nutné přesunout). Argumenty jsou:
+
+    Pole vaults popisující jednotlivé trezory. Každý trezor je popsán instancí datového typu Vault, která obsahuje:
+        Nezáporné číslo value – hodnotu věcí v trezoru.
+        Nezáporné číslo pebbles – počet kamínků v zámku trezoru.
+        Pole dvojic missing_connections – seznam chybějících spojení mezi kamínky v zámku trezoru (protože chybějících je výrazně méně než přítomných).
+
+    Na počátku jsou všechny kamínky zámku na levé straně dveří trezoru. Aby se trezor odemkl, je nutné přesunout přesně polovinu kamínků na pravou stranu a to tak aby každý kamínek vpravo byl spojený se všemi kamínky vlevo. Čas na odemčení trezoru je počet přesunutých kamínků. Čas na vlastní vyloupení je zanedbatelný. Některé trezory mohou být rozbité, takže je nelze odemknout.
+
+    Nezáporné číslo transition_time – čas na přesun od jednoho trezoru k jinému (tento čas je stejný pro všechny dvojice trezorů).
+
+    Nezáporné číslo max_time – maximální čas, po který můžete setrvat v místnosti s trezory. Víte, že tento čas není příliš velký.
+
+Veškeré výpočty by měly vystačit s rozsahem typu int.

@@ -1,0 +1,15 @@
+Policie se stále snaží dopadnout pivovarníka Pepu z Krátké vsi. Aby mohla zakročit, potřebuje získat hmatatelné důkazy o Pepově nelegální činnosti – jeho minipivovar totiž stále není registrovaný.
+
+Bohužel žádost o domovní prohlídku předpokládaného umístění pivovaru byla zamítnuta. Místní jsou dlouhodobou přítomností policie již značně znechuceni (a navíc jim Pepovo pivo velmi chutná), takže policii činnost nijak neusnadňují. Především policisté nemohou hlídkovat příliš blízko domů, ale jen na cestách mezi domy.
+
+Velitel policejní akce Franta se rozhodl, že nejlepší bude přistihnout Pepu jak přesouvá velké množství piva. Pár lahváčů si samozřejmě může nosit kdo chce kam chce, ale od určitého objemu už bude považován za obchodníka. A takový musí mít ke svému zboží doklady, které kriminální živel jako Pepa určitě nemá.
+
+Příslušníkům se dlouhým sledováním podařilo odhalit jak pravděpodobnou polohu pivovaru, tak velikost objednávek jednotlivých stavení v Krátké vsi. Také je známo, že Pepa vždy naloží celou svou várku na jeden vozík a s ním objíždí ves a dodává jednotlivým stavením. Jelikož jde o stěžejní úkol celé akce, rozhodl se Franta vzít zodpovědnost na sebe. Bohužel ale netuší, jak z dat o spotřebě určit správnou ulici, kde si na Pepu počkat. Proto se rozhodl obrátit na vás s žádostí o pomoc.
+Rozhraní programu
+
+Vaším úkolem je implementovat funkci rate_roads, která spočte, na kterých cestách je nejlepší si na Pepu počíhat. Argumenty jsou:
+
+    const std::vector<unsigned>& houses: Spotřeba piva pro jednotlivá stavení v Krátké vsi. Délka seznamu houses udává celkový počet budov v Krátké vsi. Pivovar je vždy umístěn na indexu 0.
+    const std::vector<Road>& roads: Seznam cest v Krátké vsi. Každá cesta vede mezi dvěma staveními (určeními indexem do seznamu houses) a je obousměrná. Cesty se kříží jen u stavení a mezi dvěma staveními jich může vést více. Taktéž může cesta končit u stejného stavení, kde začala.
+
+Návratovou hodnotou bude std::vector<unsigned> stejné délky jako roads a v něm bude uloženo, kolik piva Pepa zaručeně danou cestou poveze. Tedy pokud se Pepa dané cestě při rozvozu z pivovaru může úplně vyhnout, tak 0.

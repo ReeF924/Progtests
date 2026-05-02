@@ -1,0 +1,25 @@
+Vaším úkolem je implementovat šablonu třídy Array parametrizovanou typem ukládaných prvků T. Tato třída má rozhraní jako pole, ale měla by udržovat prvky ve struktuře treapy, čímž dosáhne rychlého vkládání a mazání na libovolné pozici za cenu drobného zpomalení přístupu. Navíc bude podporovat efektivní rozdělování, spojování a otáčení polí. Vyžadované metody jsou:
+
+    Bezparametrický konstruktor, přesouvací konstruktor a přesouvací operator =.
+    size(): Vrátí počet prvků v poli.
+    operator[](i): Vrátí prvek na pozici i. Pro pozici mimo rozsah [0, size()) způsobí výjimku std::out_of_range.
+    insert(i, t): Vloží prvek t na pozici i. Prvkům na pozici i a vyšší zvýší index o 1. Pro pozici mimo rozsah [0, size()] způsobí výjimku std::out_of_range.
+    erase(i): Smaže prvek na pozici i. Pro pozici mimo rozsah [0, size()) způsobí výjimku std::out_of_range.
+    cut(i): Oddělí z pole část od indexu i dále a vrátí ji jako nové pole.
+    join(a): Přilepí obsah pole a za konec aktuálního pole. Pole a je tím zkonzumováno (tj. prvky be se měly přesunout).
+    flip(): Otočí aktuální pole. Tedy prvek, co byl před flip na indexu i, bude poté na indexu size() - 1 - i.
+    for_each(f): Zavolá funktor f postupně na všech prvních pole (od nultého k poslednímu).
+
+Kopírování objektů typu Array není testováno. Pro účely testování je třeba implementovat následující statické metody třídy Array::TesterInterface:
+
+    root(array): Vrátí pointer na kořen stromu. (Na uzel, nikoliv na hodnotu v něm uloženou.)
+    parent(n): Vrátí pointer na otce uzlu n. Pro kořen vrátí nullptr. Pokud vaše implementace nemá ukazatele na otce a máte nastaveno config::PARENT_POINTERS na false, můžete metodu smazat nebo vždy vracet nullptr.
+    right(n): Vrátí pointer na pravého syna n nebo nullptr, pokud neexistuje.
+    left(n): Vrátí pointer na levého syna n nebo nullptr, pokud neexistuje.
+    value(n): Vrátí const referenci na hodnotu uloženou v uzlu n.
+    priority(n): Vrátí prioritu uzlu n. Treapa musí být uspořádána dle priority jako minimová halda.
+
+V šabloně k dispozici následující konfigurační volby:
+
+    config::PARENT_POINTERS: Určuje, zda se mají testovat i ukazatele na otce. Progtest tuto volbu respektuje. Defaultně true.
+

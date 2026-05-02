@@ -1,0 +1,20 @@
+Vaším úkolem je implementovat šablonu třídy Treap parametrizovanou typem ukládaných prvků T (krom porovnání podporuje i přesouvání; v testech je k dispozici i kopírující a defaultní konstruktor, i když ty by neměly být potřeba). Tato třída by měla udržovat prvky ve struktuře treap dle uspořádání std::less<T> (či operátoru <). Vyžadované metody jsou:
+
+    size(): Vrátí počet prvků ve stromu.
+    find(t): Nalezne prvek t ve stromu a vrátí na něj const ukazatel, nebo nullptr, pokud prvek ve stromu není.
+    insert(t): Pokusí se vložit t. Vrátí, zda se vložení povedlo. Vložení selže, pokud strom již prvek se stejnou hodnotou obsahuje.
+    erase(t): Smaže prvek t, pokud je t ve stromě. Vrací, zda byl prvek smazán.
+
+Kopírování ani přesouvání objektů typu Tree není testováno. Pro účely testování je třeba implementovat následující statické metody třídy Tree::TesterInterface:
+
+    root(tree): Vrátí pointer na kořen stromu. (Na uzel, nikoliv na hodnotu v něm uloženou.)
+    parent(n): Vrátí pointer na otce uzlu n. Pro kořen vrátí nullptr. Pokud vaše implementace nemá ukazatele na otce a máte nastaveno config::PARENT_POINTERS na false, můžete metodu smazat nebo vždy vracet nullptr.
+    right(n): Vrátí pointer na pravého syna n nebo nullptr, pokud neexistuje.
+    left(n): Vrátí pointer na levého syna n nebo nullptr, pokud neexistuje.
+    value(n): Vrátí const referenci na hodnotu uloženou v uzlu n.
+    priority(n): Vrátí prioritu uzlu n. Treapa musí být uspořádána dle priority jako minimová halda.
+
+V šabloně k dispozici následující konfigurační volba:
+
+    config::PARENT_POINTERS: Určuje, zda se mají testovat i ukazatele na otce. Progtest tuto volbu respektuje za cenu drobné bodové ztráty, pokud ukazatele na otce nebudou implementovány. Defaultně true.
+

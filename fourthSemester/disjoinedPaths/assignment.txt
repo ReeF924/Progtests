@@ -1,0 +1,18 @@
+Pepa jen stěží unikl posledním pokusům komisaře Franty o získání nezvratných důkazů o své nelegální činnosti. Naštěstí v poslední chvíli dorazili evropské dotace na podporu infrastrukturních staveb pro podporu turistického ruchu – tedy na stavbu cyklostezek. Díky tomu se dopravní síť v Krátké vsi značně zahustila, což překazilo Frantův plán.
+
+Franta se však nevzdává a povolal na pomoc kolegy. Každý z nasazených policistů bude hlídat jednu z cest (vztahy policistů s místními se příliš nezlepšují). Pepovi se podařilo získat plán, kdy bude nasazeno kolik policistů, ale plán neobsahuje, které konkrétní cesty budou hlídány.
+
+Pepa by rád naplánovat výrobu a hlavně by chtěl vědět, komu může slíbit doručení čerstvé várky – tedy bude schopný se z pivovaru dostat k danému domu aniž by použil cestu, na které bude hlídka. Pomůžete mu?
+Rozhraní programu
+
+Vaším úkolem je implementovat strukturu DeliverySolver. Tato struktura musí obsahovat:
+
+    Konstruktor s parametry:
+        unsigned houses: Celkový počet budov v Krátké vsi. Pivovar je vždy umístěn na indexu 0.
+        const std::vector<Road>& roads: Seznam cest v Krátké vsi. Každá cesta vede mezi dvěma staveními (určenými indexem) a je obousměrná. Cesty se kříží jen u stavení a mezi dvěma staveními jich může vést více. Taktéž může cesta končit u stejného stavení, kde začala.
+    Metodu std::vector<bool> solve(unsigned policemen), která pro zadaný počet policistů určí, do kterých domů určitě půjde pivo doručit (na odpovídajících indexech v návratové hodnotě bude true; délka vráceného vektoru musí být houses).
+
+Hodnocení
+
+V závislosti na efektivitě získá vaše řešení 1, 7, 14 nebo 15 bodů. Pro získání 15 bodů musí být vaše řešení efektivní a nesmí dosahovat přílišné hloubky. Časové limity jsou 15, 5, 8 a 7 sekund.
+
